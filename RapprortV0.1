@@ -1,0 +1,129 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{etex}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{comment}
+	\usepackage{amsmath,amsthm,amssymb,latexsym,enumerate}
+\usepackage[mathscr]{euscript}
+\usepackage{pst-all,graphics,graphicx,listings}
+\usepackage{wrapfig}
+\usepackage{pb-diagram}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{pstricks,epstopdf,epsfig}
+\usepackage{float}
+\usepackage{listings}
+\usepackage[overload]{empheq}
+\newcommand{\parcial}[2]{\frac{\partial#1}{\partial#2}}
+
+\newcommand{\N}{{\ensuremath{\mathbb{N}}}} \newcommand{\E}{{\ensuremath{\mathbb{Z}}}} \newcommand{\Q}{{\ensuremath{\mathbb{Q}}}} \newcommand{\X}{{\ensuremath{\mathfrak{X}}}}
+
+\newcommand{\R}{{\ensuremath{\mathbb{R}}}} \newcommand{\C}{{\ensuremath{\mathbb{C}}}} \newcommand{\sph}{{\ensuremath{\mathbb{S}}}}
+
+\DeclareMathOperator{\ad}{ad} \DeclareMathOperator{\Ad}{Ad} \DeclareMathOperator{\aut}{Aut} \DeclareMathOperator{\cyc}{cyc}
+
+\DeclareMathOperator{\diff}{Diff} \DeclareMathOperator{\NTP}{NTP} \DeclareMathOperator{\TP}{TP} \DeclareMathOperator{\s}{S} \DeclareMathOperator{\re}{R} \DeclareMathOperator{\alt}{alt} \DeclareMathOperator{\M}{\mathfrak{C}} \DeclareMathOperator{\len}{\mathfrak{L}} \DeclareMathOperator{\Th}{Th}
+
+\DeclareMathOperator{\tr}{tr}
+
+\DeclareMathOperator{\EM}{EM} \DeclareMathOperator{\mor}{Mor} \DeclareMathOperator{\obj}{Obj}
+
+\DeclareMathOperator{\Hom}{Hom}\DeclareMathOperator{\Homeo}{Homeo}
+
+\DeclareMathOperator{\Pre}{\mathbf{P}} \DeclareMathOperator{\gl}{GL} \DeclareMathOperator{\id}{id} \DeclareMathOperator{\expo}{exp}\DeclareMathOperator{\SO}{SO}
+
+%\newpsobject{grilla}{psgrid}{subgriddiv=1,griddots=10,gridlabels=6pt}
+
+%\definecolor{gris-claro}{cmyk}{0,0,0,0.25}
+
+
+%\usepackage[nottoc,notlof,notlot]{tocbibind}
+
+%\bibliographystyle{falpha}
+
+%\renewcommand\refname{Bibliographie.}
+
+\renewcommand\bibname{R\'ef\'erences}
+
+
+%\setcounter{section}{1}
+\setcounter{chapter}{1}
+
+
+\theoremstyle{plain}
+
+\newtheorem{prop}{Proposition}[chapter]
+
+\newtheorem{theo}[prop]{Theorem}
+
+\newtheorem{cor}[prop]{Corollary}
+
+\newtheorem{lem}[prop]{Lemma}
+
+\newtheorem{fa}[prop]{Fact}
+
+\theoremstyle{definition}
+
+\newtheorem{de}{Definition}[chapter]
+
+\newtheorem{exam}{Example}[chapter]
+
+\theoremstyle{remark}
+
+\newtheorem*{note}{Note}
+
+
+%\def\commentMA#1{ {\Large\bf MA: #1 }}
+
+%\def\commentMA#1{\relax}
+
+%\setcounter{de}{1}
+
+
+\begin{document}
+
+\title{ \textbf{TER :\\ PROJET \\}}
+
+
+
+
+
+\author{ \textbf{Elias AREZKI} \\ \textbf{Reda TAZI} \\ \textbf{Andres SANDOVAL}\\ \textbf{Ibrahim KARIDIO}
+\\[100pt] \vspace{5cm}\\ I.S.F.A. \\
+Master SAF - 1st year \\ Uinversity year 2014-2015}
+
+
+\maketitle
+\tableofcontents
+
+\newpage	
+\chapter*{Problem 1}
+\section{General description}
+The problem is described as following, with $a$ and $R$ as parameters to be optimized.
+
+
+\begin{align}
+&\text{minimize }& \lambda_q(1-a)E(N)E(X)+ \lambda_xE(N)E(max(X/a-R,0)) \\
+&\text{minimize }& E(N)V(min(aX,R))+V(N)E((min(aX,R))^2)
+\end{align}
+We calculate accurately the expectation values involved :
+\begin{align*}
+ E(max(X/a-R,0))&=& \int_{aR}^{\infty} (x/a-R))\, \mathrm dF_X  \\
+ &=& 1/a \int_{aR}^\infty x \, \mathrm dF_X - R \int_{aR}^\infty \, \mathrm dF_X \\
+ &=& 1/a \int_{aR}^\infty x \, \mathrm dF_x - R(1-F_X(aR)) \\
+ E(min(aX,R)^2) &=& \int_0^\infty (min(aX,R)^2)\, \mathrm dF_X \\
+ &=& a^2 \int_0^{R/a} x^2 \, \mathrm dF_x + R^2\int_{R/a}^{\infty} \, \mathrm dF_X\\
+ &=& a^2 \int_0^{R/a} x^2 \, \mathrm dF_X + R^2(1-F_X(R/a)) \\
+ E(min(aX,R))^2 &=& (\int_0^\infty min(aX,R)\, \mathrm dF_X)^2 \\
+ &=& (a \int_0^{R/a} x \, \mathrm dF_X + R(1-F_X(R/a)))^2 \\
+\text{Hence the variance is given by :}\\
+V(min(aX,R))&=&E(min(aX,R)^2)-E(min(aX,R))^2
+\end{align*}
+
+The problem finally becomes : \\
+minimize $\lambda_q(1-a)E(N)E(X)+\lambda_xE(N)[1/a \int_{aR}^\infty x \, \mathrm dF_x - R(1-F_X(aR))]$ \\
+minimize $E(N)[ a^2 \int_0^{R/a} x^2 \, \mathrm dF_X + R^2(1-F_X(R/a)) - (a \int_0^{R/a} x \, \mathrm dF_X  + R(1-F_X(R/a)))^2] \\ +V(N)[a^2 \int_0^{R/a} x^2 \, \mathrm dF_x + R^2(1-F_X(R/a))]$
+
+
+\end{document}
